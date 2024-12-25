@@ -1,6 +1,10 @@
 export const uuid = (usecrypto = true) => {
   if (usecrypto && globalThis.crypto) {
-    return crypto.randomUUID();
+    try {
+      return crypto.randomUUID();
+    } catch (e) {
+      console.log("use Math.random instead");
+    }
   }
   // b9d3 b3b4 -7547-402a-ad57-0337 e0e6 ff36
   const r = () => {
